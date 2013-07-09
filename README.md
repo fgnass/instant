@@ -22,7 +22,7 @@ of any HTML page (including dynamic ones) in order to load the client code.
 The client uses
 [server-sent events](http://en.wikipedia.org/wiki/Server-sent_events) to
 listen for updates. Browsers that don't support EventSource will fall back to a
-[hidden iframe](http://en.wikipedia.org/wiki/Comet_(programming)#Hidden_iframe).
+[hidden iframe](http://en.wikipedia.org/wiki/Comet_%28programming%29#Hidden_iframe).
 
 ### Usage
 
