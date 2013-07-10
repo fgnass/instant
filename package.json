@@ -4,6 +4,7 @@
   "main": "lib",
   "author": "Felix Gnass <fgnass@gmail.com>",
   "description": "drop-in replacement for connect.static with live-reload support",
+  "license": "MIT",
   "keywords": [
     "live",
     "reload",
