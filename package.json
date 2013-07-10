@@ -1,6 +1,6 @@
 {
   "name": "instant",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "lib",
   "author": "Felix Gnass <fgnass@gmail.com>",
   "description": "drop-in replacement for connect.static with live-reload support",
