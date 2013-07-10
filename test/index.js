@@ -26,7 +26,7 @@ describe('instant', function() {
       .set('Accept', 'text/event-stream')
       .set('User-Agent', 'supertest')
       .expect('Content-Type', 'text/event-stream')
-      .expect('data: connected\n\n', done)
+      .expect(/data: token:\d+\n\n/, done)
   })
 
   it('should expose an forever iframe', function(done) {
