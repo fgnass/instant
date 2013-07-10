@@ -37,6 +37,18 @@ app.use(instant(__dirname + '/static'));
 If `{ watch: false }` is passed as option or `$NODE_ENV` is set to `production`
 instant will behave just like `connect.static()` with no additional overhead.
 
+### instant(1)
+
+There is also an `instant` binary that can be used to spawn a development
+server in the current directory.
+The [instant-server](https://github.com/fgnass/instant-server) is packaged as
+speparate module and can be installed via npm:
+
+```
+npm install -g instant-server
+```
+
+
 ### The MIT License (MIT)
 
 Copyright (c) 2013 Felix Gnass
