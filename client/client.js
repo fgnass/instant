@@ -2,10 +2,10 @@
 !function() {
 
   var url = '/instant/events/'
-  var connected
+  var token
 
   /**
-   * Forever-iframe fallback for browsers that don't support EventSource.
+   * Iframe-fallback for browsers that don't support EventSource.
    */
   function createIframe() {
     var doc = document
@@ -23,10 +23,12 @@
       // Expose a global function that can be invoked from within the iframe:
       doc.parentWindow.instantEvent = handle
 
-      //appendIframe(doc, url)
-      setTimeout(function() { appendIframe(doc, url) }, 1000)
+      appendIframe(doc, url)
     }
     else {
+      // Most likely an old Android device. The trick here is not to send
+      // the 4KB padding, but to immediately reload the iframe afer a message
+      // was received.
       window.instantEvent = handle
       setTimeout(function() { appendIframe(document, url+'?close') }, 1000)
     }
@@ -49,9 +51,9 @@
 
   function handle(ev) {
 
-    if (ev.data == 'connected') {
-      if (connected) return location.reload()
-      connected = true
+    if (ev.data.match(/^token:/)) {
+      if (token && token != ev.data) return location.reload()
+      token = ev.data
     }
 
     // resolve the URL
