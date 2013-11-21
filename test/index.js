@@ -1,4 +1,3 @@
-
 var instant = require('..')
   , http = require('http')
   , request = require('supertest')
@@ -11,29 +10,29 @@ describe('instant', function() {
   it('should inject the client script', function(done) {
     request(app)
       .get('/index.html')
-      .expect(/<script src="\/instant\/client\/client\.js"><\/script>/, done)
+      .expect(/<script src="\/instant\/client\/bundle\.js"><\/script>/, done)
   })
 
   it('should serve the client script', function(done) {
     request(app)
-      .get('/instant/client/client.js')
-      .expect(read(__dirname + '/../client/client.js', 'utf8'), done)
+      .get('/instant/client/bundle.js')
+      .expect(read(__dirname + '/../client/bundle.js', 'utf8'), done)
   })
 
   it('should expose an EventSource', function(done) {
     request(app)
       .get('/instant/events/')
       .set('Accept', 'text/event-stream')
-      .set('User-Agent', 'supertest')
+      .set('Close-Stream', 'true')
       .expect('Content-Type', 'text/event-stream')
-      .expect(/data: token:\d+\n\n/, done)
+      .expect(/hello\ndata: {"token":\d+}\n\n\n/, done)
   })
 
   it('should expose an forever iframe', function(done) {
     request(app)
       .get('/instant/events/')
-      .set('User-Agent', 'supertest')
+      .set('Close-Stream', 'true')
       .expect('Content-Type', 'text/html')
-      .expect(/instantEvent/, done)
+      .expect(/handleSentEvent/, done)
   })
 })
