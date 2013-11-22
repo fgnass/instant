@@ -4,7 +4,8 @@ var instant = require('..')
   , assert = require('assert')
   , read = require('fs').readFileSync
 
-var app = http.createServer(instant(__dirname + '/fixture'))
+var ins = instant(__dirname + '/fixture')
+  , app = http.createServer(ins)
 
 describe('instant', function() {
   it('should inject the client script', function(done) {
@@ -23,16 +24,37 @@ describe('instant', function() {
     request(app)
       .get('/instant/events/')
       .set('Accept', 'text/event-stream')
-      .set('Close-Stream', 'true')
+      .buffer(false)
       .expect('Content-Type', 'text/event-stream')
-      .expect(/hello\ndata: {"token":\d+}\n\n\n/, done)
+      .end(expect(/data: {"token":\d+}/, done))
+  })
+
+  it('should allow manual reloads', function(done) {
+    request(app)
+      .get('/instant/events/')
+      .set('Accept', 'text/event-stream')
+      .buffer(false)
+      .end(function(err, res) {
+        ins.reload('/foo')
+        expect(/data: {"url":"\/foo"}/, done)(err, res)
+      })
   })
 
   it('should expose an forever iframe', function(done) {
     request(app)
       .get('/instant/events/')
-      .set('Close-Stream', 'true')
       .expect('Content-Type', 'text/html')
-      .expect(/handleSentEvent/, done)
+      .buffer(false)
+      .end(expect(/handleSentEvent/, done))
   })
 })
+
+
+function expect(re, done) {
+  return function(err, res) {
+    if (err) return done(err)
+    res.on('data', function(data) {
+      if (re.exec(data)) done()
+    })
+  }
+}
