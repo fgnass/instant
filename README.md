@@ -48,6 +48,33 @@ speparate module and can be installed via npm:
 npm install -g instant-server
 ```
 
+### Reloading dynamic files
+
+The instant middlware also exposes a `.reload()` function that can be called to
+reload arbitrary URLs. This can be useful if you want to reload scripts or
+stylesheets that have been processed/compiled on the fly.
+
+Note: If you don't want to server any static files at all you can safely omit
+the  `root` argument.
+
+```js
+var express = require('express');
+var instant = require('instant');
+
+var app = express();
+var ins = instant();
+
+app.use(ins);
+
+app.get('/tick', function(req, res) {
+  res.send('Current date: ' + new Date());
+});
+
+// Trigger a reload of the page every 10 seconds:
+setInterval(function() {
+  ins.reload('/tick');
+}, 10000);
+```
 
 ### The MIT License (MIT)
 
