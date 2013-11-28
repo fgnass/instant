@@ -48,6 +48,8 @@ speparate module and can be installed via npm:
 npm install -g instant-server
 ```
 
+![screenshot](http://fgnass.github.io/images/instant.gif)
+
 ### Reloading dynamic files
 
 The instant middlware also exposes a `.reload()` function that can be called to
