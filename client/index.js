@@ -10,6 +10,14 @@ on('/instant/events', function(ev) {
     if (token != ev.token) return location.reload()
   }
 
+  // reload page if it contains an element with the given class
+  if (ev.className) {
+    if (document.getElementsByClassName(ev.className).length) {
+      location.reload()
+    }
+    return
+  }
+
   // resolve the URL
   var url = parse(ev.url)
 
