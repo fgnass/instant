@@ -1,3 +1,5 @@
+/* global describe, it */
+
 var instant = require('..')
   , http = require('http')
   , request = require('supertest')
