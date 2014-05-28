@@ -11,6 +11,8 @@
   s.rel = 'stylesheet'
   s.type = 'text/css'
   s.href = href
-  p.removeChild(el)
+  s.onload = function() {
+    p.removeChild(el)
+  }
   p.insertBefore(s, ref)
 }
