@@ -28,18 +28,23 @@ describe('instant', function() {
       .set('Accept', 'text/event-stream')
       .buffer(false)
       .expect('Content-Type', 'text/event-stream')
-      .end(expect(/data: {"token":\d+}/, done))
+      .parse(waitFor(/data: {"token":\d+}/))
+      .end(done)
   })
 
   it('should allow manual reloads', function(done) {
+    var parse = waitFor(/data: {"url":"\/foo"}/)
+    var reloaded
     request(app)
       .get('/instant/events/')
       .set('Accept', 'text/event-stream')
       .buffer(false)
-      .end(function(err, res) {
-        ins.reload('/foo')
-        expect(/data: {"url":"\/foo"}/, done)(err, res)
+      .parse(function(res, cb) {
+        if (!reloaded) ins.reload('/foo')
+        reloaded = true
+        parse(res, cb)
       })
+      .end(done)
   })
 
   it('should expose an forever iframe', function(done) {
@@ -47,16 +52,21 @@ describe('instant', function() {
       .get('/instant/events/')
       .expect('Content-Type', 'text/html')
       .buffer(false)
-      .end(expect(/handleSentEvent/, done))
+      .parse(waitFor(/handleSentEvent/))
+      .end(done)
   })
 })
 
 
-function expect(re, done) {
-  return function(err, res) {
-    if (err) return done(err)
+function waitFor(re) {
+  return function(res, done) {
+    var s = ''
     res.on('data', function(data) {
-      if (re.exec(data)) done()
+      s += data
+      if (re.exec(s)) {
+        res.destroy()
+        done()
+      }
     })
   }
 }
