@@ -23,14 +23,14 @@
   "dependencies": {
     "tamper": "^0.1.0",
     "stacked": "^1.0.1",
-    "filewatcher": "^1.1.0",
-    "send": "^0.9.1",
-    "sendevent": "^1.0.1"
+    "filewatcher": "^2.0.0",
+    "send": "^0.10.1",
+    "sendevent": "^1.0.2"
   },
   "devDependencies": {
-    "should": "^4.0.4",
-    "supertest": "^0.13.0",
-    "mocha": "^1.21.4",
-    "browserify": "^5.11.2"
+    "should": "^4.3.0",
+    "supertest": "^0.15.0",
+    "mocha": "^2.0.1",
+    "browserify": "^6.3.2"
   }
 }
