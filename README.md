@@ -2,19 +2,18 @@
 
 [![Build Status](https://travis-ci.org/fgnass/instant.png)](https://travis-ci.org/fgnass/instant)
 
-Instant is a drop-in replacement for
-[connect.static](http://www.senchalabs.org/connect/middleware-static.html)
-that watches all served HTML, CSS and JavaScript files.
+Instant is ultra lightweight live-reload implementation with a unique feature set:
 
-### Features
 
 * Works in all browsers including mobile devices and IE6
 * No browser plugin required
-* Drop-in replacement for the connect.static middleware
+* Can be used as drop-in replacement for the express.static() middleware
 * Production mode with zero overhead
 * Automatic client code injection
 
-### How it works
+## How it works
+
+All static files that are served by the middleware are added to a watch list. Whenever on of these files is modified the client gets notified an reloads the resource. CSS files are updated without reloading the whole page.
 
 Instant automatically injects a script-tag right before the closing `body` tag
 of any HTML page (including dynamic ones) in order to load the client code.
@@ -24,7 +23,8 @@ The client uses
 listen for updates. Browsers that don't support EventSource will fall back to a
 [hidden iframe](http://en.wikipedia.org/wiki/Comet_%28programming%29#Hidden_iframe).
 
-### Usage
+
+## Usage
 
 ```js
 var express = require('express');
@@ -34,21 +34,7 @@ var app = express();
 app.use(instant(__dirname + '/static'));
 ```
 
-If `{ watch: false }` is passed as option or `$NODE_ENV` is set to `production`
-instant will behave just like `connect.static()` with no additional overhead.
-
-### instant(1)
-
-There is also an `instant` binary that can be used to spawn a development
-server in the current directory.
-The [instant-server](https://github.com/fgnass/instant-server) is packaged as
-speparate module and can be installed via npm:
-
-```
-npm install -g instant-server
-```
-
-![screenshot](http://fgnass.github.io/images/instant.gif)
+If `$NODE_ENV` is set to `production` or `{ bypass: true }` is passed as option, instant will behave just like `express.static()` with no additional overhead.
 
 ### Reloading dynamic files
 
@@ -77,6 +63,29 @@ setInterval(function() {
   ins.reload('/tick');
 }, 10000);
 ```
+
+### Options
+
+The following options are supported:
+
+* __bypass__ If set to `true` instant will behave just like express.static(). Defaults to `process.env.NODE_ENV == 'production'`
+* __watch__ List of file extensions to watch. Defaults to `['html', 'js', 'css']`
+* __prefix__ A prefix to add to the URLs under which the client script and the EventSource are exposed. Defaults to `'/instant'`
+
+All other options like `etag`, `dotfiles`, `index`, etc. are passed on to [send](https://www.npmjs.com/package/send).
+
+## instant(1)
+
+There is also an `instant` binary that can be used to spawn a development
+server in the current directory.
+The [instant-server](https://github.com/fgnass/instant-server) is packaged as
+speparate module and can be installed via npm:
+
+```
+npm install -g instant-server
+```
+
+![screenshot](http://fgnass.github.io/images/instant.gif)
 
 ### The MIT License (MIT)
 
