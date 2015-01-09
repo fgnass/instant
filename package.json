@@ -28,9 +28,10 @@
     "sendevent": "^1.0.2"
   },
   "devDependencies": {
-    "should": "^4.3.0",
-    "supertest": "^0.15.0",
+    "browserify": "^6.3.2",
+    "express": "^4.10.7",
     "mocha": "^2.0.1",
-    "browserify": "^6.3.2"
+    "should": "^4.3.0",
+    "supertest": "^0.15.0"
   }
 }
