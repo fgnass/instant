@@ -1,3 +1,4 @@
+'use strict';
 /* global describe, it */
 
 var instant = require('..')
@@ -8,6 +9,7 @@ var instant = require('..')
 
 var ins = instant(__dirname + '/fixture')
   , app = http.createServer(ins)
+    ins.add(__dirname + '/fixture2')
 
 describe('instant', function() {
   it('should inject the client script', function(done) {
@@ -57,6 +59,13 @@ describe('instant', function() {
   })
 })
 
+describe('instant add', function() {
+  it('should inject the client script', function(done) {
+    request(app)
+      .get('/index2.html')
+      .expect(/<script src="\/instant\/client\/bundle\.js"><\/script>/, done)
+  })
+})
 
 function waitFor(re) {
   return function(res, done) {
