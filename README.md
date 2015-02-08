@@ -13,7 +13,7 @@ Instant is ultra lightweight live-reload implementation with a unique feature se
 
 ## How it works
 
-All static files that are served by the middleware are added to a watch list. Whenever on of these files is modified the client gets notified an reloads the resource. CSS files are updated without reloading the whole page.
+All static files that are served by the middleware are added to a watch list. Whenever one of these files is modified the client gets notified an reloads the resource. CSS files are updated without reloading the whole page.
 
 Instant automatically injects a script-tag right before the closing `body` tag
 of any HTML page (including dynamic ones) in order to load the client code.
