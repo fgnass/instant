@@ -21,16 +21,16 @@
     "prepublish": "browserify client/index.js -o client/bundle.js"
   },
   "dependencies": {
-    "tamper": "^0.1.0",
-    "stacked": "^1.0.1",
-    "filewatcher": "^2.0.0",
-    "send": "^0.10.1",
-    "sendevent": "^1.0.2"
+    "filewatcher": "^2.2.0",
+    "send": "^0.12.1",
+    "sendevent": "^1.0.4",
+    "stacked": "^1.1.1",
+    "tamper": "^0.1.0"
   },
   "devDependencies": {
-    "should": "^4.3.0",
+    "should": "^5.2.0",
     "supertest": "^0.15.0",
-    "mocha": "^2.0.1",
-    "browserify": "^6.3.2"
+    "mocha": "^2.2.1",
+    "browserify": "^9.0.3"
   }
 }
