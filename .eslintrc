@@ -1,0 +1,17 @@
+{
+  "env": {
+    "node": true
+  },
+  "rules": {
+    "consistent-return": false,
+    "curly": false,
+    "eqeqeq": false,
+    "new-cap": false,
+    "no-path-concat": false,
+    "no-underscore-dangle": false,
+    "no-use-before-define": "nofunc",
+    "quotes": "avoid-escape",
+    "semi": "never",
+    "strict": "never"
+  }
+}
