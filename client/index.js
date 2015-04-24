@@ -2,7 +2,7 @@ var on = require('sendevent')
   , parse = require('./url')
   , find = require('./find')
   , replace = require('./replace')
-  
+
 var token
 
 on('/instant/events', function(ev) {
@@ -11,11 +11,15 @@ on('/instant/events', function(ev) {
     if (token != ev.token) return location.reload()
   }
 
-  // reload page if it contains an element with the given class
+  // reload page if it contains an element with the given class name
   if (ev.className) {
-    if (document.getElementsByClassName(ev.className).length) {
-      location.reload()
-    }
+    if (find.byClass(ev.className)) location.reload()
+    return
+  }
+
+  // reload page if it contains an element that matches the given selector
+  if (ev.selector) {
+    if (find.bySelector(ev.selector)) location.reload()
     return
   }
 
@@ -29,10 +33,10 @@ on('/instant/events', function(ev) {
   }
 
   // look for a stylesheet
-  var el = find('link', 'href', url)
+  var el = find.byURL('link', 'href', url)
   if (el) return replace(el, url.pathname + '?v=' + new Date().getTime())
 
   // look for a script
-  el = find('script', 'src', url)
+  el = find.byURL('script', 'src', url)
   if (el) location.reload()
 })
