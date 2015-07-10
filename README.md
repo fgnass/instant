@@ -71,6 +71,7 @@ The following options are supported:
 * __bypass__ If set to `true` instant will behave just like express.static(). Defaults to `process.env.NODE_ENV == 'production'`
 * __watch__ List of file extensions to watch. Defaults to `['html', 'js', 'css']`
 * __prefix__ A prefix to add to the URLs under which the client script and the EventSource are exposed. Defaults to `'/instant'`
+* __delay__ Amount of time in milliseconds to wait before triggering a reload. Defaults to `10`
 
 All other options like `etag`, `dotfiles`, `index`, etc. are passed on to [send](https://www.npmjs.com/package/send).
 
