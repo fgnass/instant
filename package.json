@@ -1,4 +1,4 @@
-{
+
   "name": "instant",
   "version": "1.10.0",
   "main": "lib",
@@ -25,12 +25,12 @@
     "send": "^0.12.1",
     "sendevent": "^1.0.4",
     "stacked": "^1.1.1",
-    "tamper": "^0.1.0"
+    "tamper": "^0.1.0",
+    "browserify": "^9.0.3"
   },
   "devDependencies": {
     "should": "^5.2.0",
     "supertest": "^0.15.0",
-    "mocha": "^2.2.1",
-    "browserify": "^9.0.3"
+    "mocha": "^2.2.1"
   }
 }
