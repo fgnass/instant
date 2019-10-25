@@ -3,6 +3,9 @@
   "version": "1.10.0",
   "main": "lib",
   "author": "Felix Gnass <fgnass@gmail.com>",
+  "contributors": [
+    "Aral Balkan <mail@ar.al> (https://ar.al)"
+  ],
   "description": "drop-in replacement for connect.static with live-reload support",
   "license": "MIT",
   "keywords": [
@@ -18,19 +21,19 @@
   },
   "scripts": {
     "test": "mocha --require should",
-    "prepublish": "browserify client/index.js -o client/bundle.js"
+    "prepare": "browserify client/index.js -o client/bundle.js"
   },
   "dependencies": {
-    "filewatcher": "^2.2.0",
-    "send": "^0.12.1",
+    "filewatcher": "^3.0.1",
+    "send": "^0.17.1",
     "sendevent": "^1.0.4",
     "stacked": "^1.1.1",
     "tamper": "^0.1.0"
   },
   "devDependencies": {
+    "browserify": "^16.5.0",
+    "mocha": "^6.2.2",
     "should": "^5.2.0",
-    "supertest": "^0.15.0",
-    "mocha": "^2.2.1",
-    "browserify": "^9.0.3"
+    "supertest": "^4.0.2"
   }
 }
