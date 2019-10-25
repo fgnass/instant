@@ -3,6 +3,9 @@
   "version": "1.10.0",
   "main": "lib",
   "author": "Felix Gnass <fgnass@gmail.com>",
+  "contributors": [
+    "Aral Balkan <mail@ar.al> (https://ar.al)"
+  ],
   "description": "drop-in replacement for connect.static with live-reload support",
   "license": "MIT",
   "keywords": [
