@@ -55,6 +55,12 @@ describe('instant', function() {
       .parse(waitFor(/handleSentEvent/))
       .end(done)
   })
+
+  it('should perform housekeeping when asked', function(done) {
+    ins.cleanUp(function() {
+      done()
+    })
+  })
 })
 
 
