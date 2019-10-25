@@ -21,7 +21,7 @@
   },
   "scripts": {
     "test": "mocha --require should",
-    "prepublish": "browserify client/index.js -o client/bundle.js"
+    "prepare": "browserify client/index.js -o client/bundle.js"
   },
   "dependencies": {
     "filewatcher": "^2.2.0",
