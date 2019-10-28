@@ -15,7 +15,6 @@ function reloadPage() {
   // so we must save that so checking for the existence of the object that contains
   // the location to restore is how we know that we have asked for a force reload.
   if (navigator.userAgent.includes('Firefox') && document.location.host === 'localhost') {
-    console.log('[instant] Firefox running on host localhost. Doing full reload.')
     window.locationToRestoreAfterForcedReload = {
       x: window.scrollX,
       y: window.scrollY
@@ -23,7 +22,6 @@ function reloadPage() {
     location.reload(true)
   } else {
     // In every other case, we can just do a regular reload.
-    console.log('[instant] Not Firefox running on host location. Doing regular reload.')
     location.reload()
   }
 }
