@@ -27,7 +27,7 @@
     "filewatcher": "^3.0.1",
     "node-graceful": "^2.0.1",
     "send": "^0.17.1",
-    "sendevent": "^1.0.5",
+    "sendevent": "^1.0.6",
     "stacked": "^1.1.1",
     "tamper": "^0.1.0"
   },
